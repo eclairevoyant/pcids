@@ -1,0 +1,11 @@
+/*
+!/.gitignore
+!/default.nix
+!/flake.lock
+!/flake.nix
+!/*.nimble
+
+!/src
+/src/*
+!/src/*.nim
+
