@@ -1,25 +1,18 @@
 {
   lib,
-  nimPackages,
-  autoPatchelfHook,
   pciutils,
+  platforms,
+  buildNimPackage,
 }:
-nimPackages.buildNimPackage (finalAttrs: {
+buildNimPackage {
   pname = "pcids";
-  version = "unstable-2023-11-14";
+  version = "0-unstable-2023-11-14";
 
   src = ./.;
 
-  nativeBuildInputs = [
-    autoPatchelfHook
-  ];
-
-  propagatedBuildInputs = [
-    pciutils
-  ];
-
   postPatch = ''
-    substituteInPlace src/pcids.nim --replace lspci "${lib.getExe' pciutils "lspci"}"
+    substituteInPlace src/pcids.nim \
+      --replace-fail lspci "${lib.meta.getExe' pciutils "lspci"}"
   '';
 
   hardeningEnable = ["pie"];
@@ -30,6 +23,6 @@ nimPackages.buildNimPackage (finalAttrs: {
     #license = lib.licenses.cc-by-nc-sa-40;
     mainProgram = "pcids";
     maintainers = with lib.maintainers; [eclairevoyant];
-    platforms = lib.platforms.linux;
+    inherit platforms;
   };
-})
+}

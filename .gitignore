@@ -1,6 +1,6 @@
 /*
 !/.gitignore
-!/default.nix
+!/package.nix
 !/flake.lock
 !/flake.nix
 !/*.nimble
