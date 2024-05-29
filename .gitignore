@@ -3,6 +3,7 @@
 !/package.nix
 !/flake.lock
 !/flake.nix
+!/README.md
 !/*.nimble
 
 !/src
