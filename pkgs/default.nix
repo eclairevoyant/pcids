@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
 
@@ -11,18 +11,16 @@
       system,
       ...
     }:
-    let
-      packages = {
-        pcids = final.callPackage ./package.nix { };
-      };
-    in
     {
       devShells.default = final.mkShell { packages = [ final.pciutils ]; };
 
-      overlayAttrs = packages;
+      overlayAttrs = {
+        pcids = final.callPackage ./package.nix { inherit self; };
+      };
 
-      packages = packages // {
-        default = packages.pcids;
+      packages = {
+        inherit (final) pcids;
+        default = final.pcids;
       };
     };
 }
