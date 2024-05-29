@@ -6,7 +6,7 @@
 }:
 buildNimPackage {
   pname = "pcids";
-  version = "0-unstable-2023-11-14";
+  version = "0.1.1";
 
   src = self;
 
