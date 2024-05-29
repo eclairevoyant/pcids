@@ -2,9 +2,12 @@ import std/[osproc,parseutils,strformat,strscans,strutils]
 
 when isMainModule:
   # class 03xx refers to video cards
-  let devices = execCmdEx("lspci -nnmm -d '*:*:03xx'").output
+  let devices = execCmdEx("lspci -Dnnmmd '*:*:03xx'").output
   for line in devices.split('\n'):
-    var busid1, busid2, busid3, classid: int
+    var domainid, busid, deviceid, functionid, classid: int
     var class, vendor, device: string
-    if line.scanf("$h:$h.$h \"$+\" \"$+\" \"$+\"", busid1, busid2, busid3, class, vendor, device):
-      echo &"PCI:{busid1}:{busid2}:{busid3}\t{vendor}\t{device}"
+    if line.scanf("$h:$h:$h.$h \"$+\" \"$+\" \"$+\"", domainid, busid, deviceid, functionid, class, vendor, device):
+      if (domainid == 0):
+        echo &"PCI:{busid}:{deviceid}:{functionid}\t{vendor}\t{device}"
+      else:
+        echo &"PCI:{busid}@{domainid}:{deviceid}:{functionid}\t{vendor}\t{device}"
