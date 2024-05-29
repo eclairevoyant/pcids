@@ -6,7 +6,10 @@
 !/README.md
 !/*.nimble
 
+!/pkgs
+/pkgs/*
+!/pkgs/*.nix
+
 !/src
 /src/*
 !/src/*.nim
-
