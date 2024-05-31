@@ -8,6 +8,6 @@ when isMainModule:
     var class, vendor, device: string
     if line.scanf("$h:$h:$h.$h \"$+\" \"$+\" \"$+\"", domainid, busid, deviceid, functionid, class, vendor, device):
       if (domainid == 0):
-        echo &"PCI:{busid}:{deviceid}:{functionid}\t{vendor}\t{device}"
+        echo &"PCI:{busid}:{deviceid}:{functionid}\n\t{vendor}\n\t{device}"
       else:
-        echo &"PCI:{busid}@{domainid}:{deviceid}:{functionid}\t{vendor}\t{device}"
+        echo &"PCI:{busid}@{domainid}:{deviceid}:{functionid}\n\t{vendor}\n\t{device}"

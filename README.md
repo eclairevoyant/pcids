@@ -25,19 +25,23 @@ $ lspci -nn -d '*:*:03xx'
 whereas `pcids` produces a more directly usable format:
 
 ```
-PCI:45:0:0	Intel Corporation [8086]	DG2 [Arc A770] [56a0]
+PCI:45:0:0
+	Intel Corporation [8086]
+	DG2 [Arc A770] [56a0]
 ```
 
 `pcids` will even handle the niche case where you have a PCI domain != 0; for example, if `lspci` output looks like this:
 
 ```
-0123:01:00.0 <device info>
+0123:01:00.0 <vendor info> <device info>
 ```
 
 `pcids` will output in the following format:
 
 ```
-PCI:1@123:0:0  <device info>
+PCI:1@123:0:0
+	<vendor info>
+	<device info>
 ```
 
 ## Usage
