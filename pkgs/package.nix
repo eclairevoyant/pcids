@@ -20,7 +20,7 @@ buildNimPackage {
   meta = {
     description = "Get PCI IDs for video cards";
     homepage = "https://github.com/eclairevoyant/pcids";
-    #license = lib.licenses.cc-by-nc-sa-40;
+    license = lib.licenses.cc-by-nc-sa-40;
     mainProgram = "pcids";
     maintainers = with lib.maintainers; [ eclairevoyant ];
   };

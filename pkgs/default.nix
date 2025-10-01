@@ -6,13 +6,21 @@
     {
       final,
       lib,
-      pkgs,
       self',
       system,
+      pkgs,
       ...
     }:
     {
-      devShells.default = final.mkShell { packages = [ final.pciutils ]; };
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowlistedLicenses = with lib.licenses; [ cc-by-nc-sa-40 ];
+      };
+
+      devShells.default = final.mkShell {
+        inputsFrom = [ self'.packages.default ];
+        packages = [ final.nimble ];
+      };
 
       overlayAttrs = {
         pcids = final.callPackage ./package.nix { inherit self; };
