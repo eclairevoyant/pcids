@@ -8,7 +8,6 @@
       lib,
       self',
       system,
-      pkgs,
       ...
     }:
     {
